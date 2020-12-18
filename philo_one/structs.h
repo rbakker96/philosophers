@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/17 14:09:48 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/18 15:39:20 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,25 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct			s_time_rscs
-{
-	struct timeval		start;
-	struct timeval		current;
-}						t_time_rscs;
 
 typedef struct			s_mutex_rscs
 {
-	pthread_mutex_t		lock_one;
-	pthread_mutex_t		lock_two;
+	pthread_mutex_t		eat_lock;
+	pthread_mutex_t		left_fork;
+	pthread_mutex_t		right_fork;
 }						t_mutex_rscs;
 
 typedef struct			s_philo
 {
 	pthread_t			tid;
+	int					nb;
 }						t_philo;
 
 typedef struct			s_simulation_args
 {
-	t_time_rscs			time;
 	t_mutex_rscs		mutex;
 	t_philo				*philo;
-	pthread_t			tid;
-	pthread_t			tidd;
+	struct timeval		time;
 	int					nb_of_philo;
 	int					time_to_die;
 	int					time_to_eat;

@@ -6,12 +6,13 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 15:26:07 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/15 14:51:42 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/18 15:55:09 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "print_functions.h"
+#include "structs.h"
 
 int		ft_strlen(const char *s)
 {
@@ -31,37 +32,32 @@ int		print(int fd, char *str)
 	return (write(fd, str, length));
 }
 
-int		print_status()
+void	ft_putchar_fd(char c, int fd)
 {
-	char *thread_status[5];
-
-	thread_status[0] = " has taken a fork";
-	thread_status[1] = " is eating";
-	thread_status[2] = " is sleeping";
-	thread_status[3] = " is thinking";
-	thread_status[4] = " died";
-	return (0);
+	write(fd, &c, 1);
 }
 
-// void		ft_putnbr_fd(int n, int fd)
-// {
-// 	if (n < 0)
-// 	{
-// 		if (n == -2147483648)
-// 		{
-// 			ft_putchar_fd(('-'), fd);
-// 			ft_putchar_fd(('2'), fd);
-// 			n = 147483648;
-// 		}
-// 		else
-// 		{
-// 			ft_putchar_fd(('-'), fd);
-// 			n = n * -1;
-// 		}
-// 	}
-// 	if (n >= 10)
-// 	{
-// 		ft_putnbr_fd((n / 10), fd);
-// 	}
-// 	ft_putchar_fd(('0' + (n % 10)), fd);
-// }
+void		print_nb(int fd, long n)
+{
+	if (n >= 10)
+		print_nb(fd, (n / 10));
+	ft_putchar_fd(('0' + (n % 10)), fd);
+}
+
+int		print_status(int status, int philo, long timestamp)
+{
+	char *thread_status[6];
+
+	thread_status[0] = "\thas taken a left fork\n";
+	thread_status[1] = "\thas taken a right fork\n";
+	thread_status[2] = "\tis eating\n";
+	thread_status[3] = "\tis sleeping\n";
+	thread_status[4] = "\tis thinking\n";
+	thread_status[5] = "\tdied\n";
+
+	print_nb(STD_OUT, timestamp);
+	print(STD_OUT, "\t");
+	print_nb(STD_OUT, philo);
+	print(STD_OUT, thread_status[status]);
+	return (0);
+}

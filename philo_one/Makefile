@@ -6,13 +6,13 @@
 #    By: roybakker <roybakker@student.codam.nl>       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/14 15:10:01 by roybakker     #+#    #+#                  #
-#    Updated: 2020/12/15 15:20:13 by roybakker     ########   odam.nl          #
+#    Updated: 2020/12/17 19:43:00 by roybakker     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philo_one
 
-SOURCES			= 	main.c input_validation.c parsing.c print_functions.c threads.c
+SOURCES			= 	main.c input_validation.c parsing.c print_functions.c threads.c simulation.c
 
 OBJECTS 		=	${SOURCES:%.c=%.o}
 
