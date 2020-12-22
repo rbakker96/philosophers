@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 15:26:07 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/18 15:55:09 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/22 15:11:25 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int		ft_strlen(const char *s)
 
 int		print(int fd, char *str)
 {
-	int length;
-
-	length = ft_strlen(str);
-	return (write(fd, str, length));
+	return (write(fd, str, ft_strlen(str)));
 }
 
 void	ft_putchar_fd(char c, int fd)
@@ -42,22 +39,14 @@ void		print_nb(int fd, long n)
 	if (n >= 10)
 		print_nb(fd, (n / 10));
 	ft_putchar_fd(('0' + (n % 10)), fd);
+
 }
 
-int		print_status(int status, int philo, long timestamp)
+int		print_status(char *status, int philo, long timestamp)
 {
-	char *thread_status[6];
-
-	thread_status[0] = "\thas taken a left fork\n";
-	thread_status[1] = "\thas taken a right fork\n";
-	thread_status[2] = "\tis eating\n";
-	thread_status[3] = "\tis sleeping\n";
-	thread_status[4] = "\tis thinking\n";
-	thread_status[5] = "\tdied\n";
-
 	print_nb(STD_OUT, timestamp);
-	print(STD_OUT, "\t");
+	write(STD_OUT, "\t", 1);
 	print_nb(STD_OUT, philo);
-	print(STD_OUT, thread_status[status]);
+	write(STD_OUT, status, ft_strlen(status));
 	return (0);
 }

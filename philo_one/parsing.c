@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/15 09:20:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/18 15:27:54 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/22 14:13:14 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				ft_atoi(const char *str)
 	return (result * pos_neg);
 }
 
-int		parse_args(t_simulation_args *args, int argc, char **argv)
+int		parse_args(t_args *args, int argc, char **argv)
 {
 	args->nb_of_philo = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]) * 1000;

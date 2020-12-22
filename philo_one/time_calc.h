@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   simulation.h                                       :+:    :+:            */
+/*   time_calc.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/17 15:07:12 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/18 15:26:45 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/21 14:56:23 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/21 16:29:34 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMULATION_H
-# define SIMULATION_H
+#ifndef TIME_CALC_H
+# define TIME_CALC_H
 # include "structs.h"
 
-long	timestamp(t_simulation_args *args);
-void	eating(t_simulation_args *args);
+long long	get_time();
+long long	timestamp(t_philo *philo);
 
 #endif
