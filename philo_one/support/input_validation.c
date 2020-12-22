@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   threads.c                                          :+:    :+:            */
+/*   input_validation.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/15 11:51:03 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 14:30:11 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/14 15:05:21 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/22 16:53:53 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "threads.h"
+#include "../support.h"
 
-int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
+int		ft_isdigit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
+
+int		validate_args(t_args *args, int argc, char **argv)
 {
 	int i;
+	int x;
 
 	i = 1;
-	if (pthread_mutex_init(&mutex->eat_lock, NULL) ||
-		pthread_mutex_init(&mutex->left_fork, NULL) ||
-		pthread_mutex_init(&mutex->right_fork, NULL))
-        return (-1);
-	while (i < (args->nb_of_philo + 1))
+	if (argc != 5 && argc != 6)
+		return (-1);
+	while (i < argc)
 	{
-		philo[i].mutex = mutex;
-		philo[i].args = args;
-		philo[i].id = i;
+		x = (argv[i][0] == '+') ? 1 : 0;
+		while (argv[i][x] != '\0')
+		{
+			if (!ft_isdigit(argv[i][x]))
+				return (-1);
+			x++;
+		}
 		i++;
 	}
+	parse_args(args, argc, argv);
 	return (0);
 }

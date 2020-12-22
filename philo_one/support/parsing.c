@@ -6,11 +6,11 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/15 09:20:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 14:13:14 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/22 16:53:57 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../support.h"
 
 int				ft_atoi(const char *str)
 {

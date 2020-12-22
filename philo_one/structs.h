@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 14:05:41 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/22 15:44:02 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct			s_mutex
 {
-	pthread_mutex_t		eat_lock;
+	pthread_mutex_t		write_lock;
 	pthread_mutex_t		left_fork;
 	pthread_mutex_t		right_fork;
 }						t_mutex;

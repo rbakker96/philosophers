@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_functions.h                                  :+:    :+:            */
+/*   error.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/14 15:29:25 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 14:53:17 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/21 15:32:03 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/22 16:53:50 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINT_FUNCTIONS_H
-# define PRINT_FUNCTIONS_H
+#include "../support.h"
 
-# define STD_OUT 1
-# define ERROR_OUT 2
-
-int		print(int fd, char *str);
-int		print_status(char *status, int philo, long timestamp);
-
-typedef enum		e_thread_status
+int		error_sequence(char *msg)
 {
-	alive = 0,
-	dead = 1,
-	left = 0,
-	right = 1,
-	eat = 2,
-	sleepp = 3,
-	think = 4,
-	died = 5
-}					t_thread_status;
-
-#endif
+	print(ERROR_OUT, msg);
+	return (-1);
+}

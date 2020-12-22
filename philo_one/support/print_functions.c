@@ -6,13 +6,12 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 15:26:07 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 15:11:25 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/22 16:54:01 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "print_functions.h"
-#include "structs.h"
+#include "../support.h"
 
 int		ft_strlen(const char *s)
 {
@@ -42,11 +41,13 @@ void		print_nb(int fd, long n)
 
 }
 
-int		print_status(char *status, int philo, long timestamp)
+int		print_status(t_philo *philo, char *status, int id, long timestamp)
 {
+	pthread_mutex_lock(&philo->mutex->write_lock);
 	print_nb(STD_OUT, timestamp);
 	write(STD_OUT, "\t", 1);
-	print_nb(STD_OUT, philo);
+	print_nb(STD_OUT, id);
 	write(STD_OUT, status, ft_strlen(status));
+	pthread_mutex_unlock(&philo->mutex->write_lock);
 	return (0);
 }

@@ -6,13 +6,21 @@
 #    By: roybakker <roybakker@student.codam.nl>       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/14 15:10:01 by roybakker     #+#    #+#                  #
-#    Updated: 2020/12/22 15:30:22 by roybakker     ########   odam.nl          #
+#    Updated: 2020/12/22 16:52:24 by roybakker     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philo_one
 
-SOURCES			= 	main.c input_validation.c parsing.c print_functions.c threads.c eating.c time_calc.c error.c
+SOURCES			= 	main.c \
+					support/error.c \
+					support/input_validation.c \
+					support/parsing.c \
+					support/print_functions.c \
+					support/time_calc.c \
+					stages/eating.c \
+					stages/sleeping.c \
+					stages/thinking.c
 
 OBJECTS 		=	${SOURCES:%.c=%.o}
 

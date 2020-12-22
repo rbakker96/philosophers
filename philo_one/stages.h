@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   time_calc.h                                        :+:    :+:            */
+/*   stages.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/21 14:56:23 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/21 16:29:34 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/22 16:36:27 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/22 16:37:46 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TIME_CALC_H
-# define TIME_CALC_H
+#ifndef STAGES_H
+# define STAGES_H
 # include "structs.h"
 
-long long	get_time();
-long long	timestamp(t_philo *philo);
+void	eating(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
 
 #endif

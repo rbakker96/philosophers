@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   input_validation.h                                 :+:    :+:            */
+/*   sleeping.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/14 15:20:25 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 14:19:01 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/22 15:38:23 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/22 16:53:36 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_VALIDATION_H
-# define INPUT_VALIDATION_H
-# include "structs.h"
+#include "../stages.h"
+#include "../support.h"
+#include <unistd.h>
 
-int		validate_args(t_args *args, int argc, char **argv);
-
-#endif
+void		sleeping(t_philo *philo)
+{
+	print_status(philo, "\tis sleeping\n", philo->id, timestamp(philo));
+	usleep(philo->args->time_to_sleep);
+}
