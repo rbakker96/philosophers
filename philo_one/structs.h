@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 15:44:02 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/23 15:18:45 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct			s_mutex
 
 typedef struct			s_args
 {
+	int					state;
 	int					nb_of_philo;
 	int					time_to_die;
 	int					time_to_eat;
@@ -37,6 +38,7 @@ typedef struct			s_philo
 	t_args				*args;
 	pthread_t			tid;
 	long long			start_time;
+	long long			eating_time;
 	int					id;
 }						t_philo;
 

@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/15 09:20:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 16:53:57 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/23 15:20:48 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int				ft_atoi(const char *str)
 
 int		parse_args(t_args *args, int argc, char **argv)
 {
+	args->state = alive;
 	args->nb_of_philo = ft_atoi(argv[1]);
-	args->time_to_die = ft_atoi(argv[2]) * 1000;
+	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]) * 1000;
 	args->time_to_sleep = ft_atoi(argv[4]) * 1000;
 	args->nb_of_must_eat = (argc == 6) ? ft_atoi(argv[5]) : 0;

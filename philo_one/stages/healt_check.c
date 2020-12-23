@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   thinking.c                                         :+:    :+:            */
+/*   healt_check.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/22 16:22:47 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/23 15:19:47 by roybakker     ########   odam.nl         */
+/*   Created: 2020/12/23 10:52:59 by roybakker     #+#    #+#                 */
+/*   Updated: 2020/12/23 15:21:12 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../stages.h"
 #include "../support.h"
+#include "../structs.h"
 
-void		thinking(t_philo *philo)
+void	healt_check(t_philo *philo)
 {
 	if (philo->args->state == dead)
 		return ;
-	print_status(philo, "\tis thinking\n", philo->id, timestamp(philo));
+	if (eatingtime(philo) > philo->args->time_to_die)
+	{
+		print_status(philo, "\tis dead\n", philo->id, timestamp(philo));
+		philo->args->state = dead;
+	}
 }

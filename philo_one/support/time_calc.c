@@ -6,11 +6,13 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/21 14:56:12 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 16:54:41 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/23 15:48:29 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../support.h"
+
+#include "stdio.h" //remove
 
 long long	get_time()
 {
@@ -29,8 +31,20 @@ long long	timestamp(t_philo *philo)
 	long long timestamp;
 	gettimeofday(&current, NULL);
 
-	timestamp = (current.tv_sec * 1000 + current.tv_usec / 1000)
-				- philo->start_time;
+	timestamp = (current.tv_sec * 1000 + current.tv_usec / 1000);
 
-	return (timestamp);
+	return (timestamp - philo->start_time);
+}
+
+long long	eatingtime(t_philo *philo)
+{
+	struct timeval current;
+	long long timestamp;
+	gettimeofday(&current, NULL);
+
+	timestamp = (current.tv_sec * 1000 + current.tv_usec / 1000);
+
+	printf("eating time = %lld\n", timestamp - philo->eating_time);
+
+	return (timestamp - philo->eating_time);
 }

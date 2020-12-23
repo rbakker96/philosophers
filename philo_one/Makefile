@@ -6,7 +6,7 @@
 #    By: roybakker <roybakker@student.codam.nl>       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/14 15:10:01 by roybakker     #+#    #+#                  #
-#    Updated: 2020/12/22 16:52:24 by roybakker     ########   odam.nl          #
+#    Updated: 2020/12/23 11:13:51 by roybakker     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SOURCES			= 	main.c \
 					support/time_calc.c \
 					stages/eating.c \
 					stages/sleeping.c \
-					stages/thinking.c
+					stages/thinking.c \
+					stages/healt_check.c
 
 OBJECTS 		=	${SOURCES:%.c=%.o}
 

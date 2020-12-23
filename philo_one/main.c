@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/22 16:52:31 by roybakker     ########   odam.nl         */
+/*   Updated: 2020/12/23 15:54:08 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,48 @@
 #include "structs.h"
 #include <stdlib.h>
 
-int         g_philo_amount;
+void    print_args(t_args args)
+{
+    print(STD_OUT, "nb of philo = ");
+    print_nb(STD_OUT, args.nb_of_philo);
+    print(STD_OUT, "\ntime to die= ");
+    print_nb(STD_OUT, args.time_to_die);
+    print(STD_OUT, "\ntime to eat = ");
+    print_nb(STD_OUT, args.time_to_eat);
+    print(STD_OUT, "\nntime to sleep = ");
+    print_nb(STD_OUT, args.time_to_sleep);
+    print(STD_OUT, "\nnb of must eat = ");
+    print_nb(STD_OUT, args.nb_of_must_eat);
+    print(STD_OUT, "\n\n");
+}
 
 void	*philo_simulation(void *arguments)
 {
-	t_philo *philosophers = (t_philo *)arguments;
+	t_philo *philo = (t_philo *)arguments;
+    int i;
 
-    // -> while 'nobody dies' or 'nb of eating rounds'
-    //take left fork
-    //take right fork
-    //eat --> dies if food is not on time
-    //sleep
-
-    eating(philosophers);
-    sleeping(philosophers);
-    thinking(philosophers);
-
+    i = 0;
+    while (philo->args->state != dead ||
+        (philo->args->nb_of_must_eat && i < philo->args->nb_of_must_eat))
+    {
+        eating(philo);
+        sleeping(philo);
+        healt_check(philo);
+        thinking(philo);
+        i++;
+    }
     return NULL;
 }
 
 int    simulation_loop(t_philo *philo, t_args args, t_mutex mutex)
 {
     int i;
-    long long time;
 
 	i = 1;
-	time = get_time();
     while (i < (args.nb_of_philo + 1))
     {
-        philo[i].start_time = time;
+        philo[i].start_time = get_time();
+        philo[i].eating_time = get_time();
    		if (pthread_create(&(philo[i].tid), NULL, &philo_simulation, &philo[i]))
         	return (-1);
         i++;
@@ -88,6 +101,7 @@ int		main(int argc, char **argv)
     print(STD_OUT, "time\tphilo\tstatus\n");
 	if (validate_args(&args, argc, argv))
         return (error_sequence("parsing error\n"));
+    print_args(args); // REMOVE
     philosophers = malloc(sizeof(t_philo) * (args.nb_of_philo + 1));
     if (!philosophers)
        return (error_sequence("malloc failure\n"));
