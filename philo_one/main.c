@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 15:49:57 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/03 16:59:02 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int    simulation_loop(t_philo *philo, t_args args, t_mutex mutex)
         philo[i].eating_time = get_time();
    		if (pthread_create(&(philo[i].tid), NULL, &philo_simulation, &philo[i]))
         	return (-1);
-        usleep(100);
         i++;
     }
     i = 1;
@@ -84,12 +83,12 @@ int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
 {
 	int i;
 
-	i = 0;
 	if (pthread_mutex_init(&mutex->write_lock, NULL))
         return (-1);
     mutex->forks = malloc(sizeof(pthread_mutex_t) * args->nb_of_philo);
     if (!mutex->forks)
         return (-1);
+    i = 0;
     while (i < args->nb_of_philo)
     {
         if (pthread_mutex_init(&mutex->forks[i], NULL))
