@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/22 16:42:21 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/23 14:56:55 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/03 14:34:08 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int			print_status(t_philo *philo, char *status, int id, long timestamp);
 
 long long	get_time();
 long long	timestamp(t_philo *philo);
-long long	eatingtime(t_philo *philo);
 
 typedef enum		e_thread_status
 {
 	alive = 0,
-	dead = 1
+	dead = 1,
+	left = 0,
+	right = 1
 }					t_thread_status;
 
 #endif

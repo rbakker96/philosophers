@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/22 16:36:27 by roybakker     #+#    #+#                 */
-/*   Updated: 2020/12/23 11:07:12 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/03 14:31:11 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # include "structs.h"
 
 void	eating(t_philo *philo);
-void	sleeping(t_philo *philo);
-void	thinking(t_philo *philo);
-void	healt_check(t_philo *philo);
+void	*health_check(void *arguments);
 
 #endif
