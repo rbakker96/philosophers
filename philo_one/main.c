@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 14:00:44 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/03 15:49:57 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int    simulation_loop(t_philo *philo, t_args args, t_mutex mutex)
         philo[i].eating_time = get_time();
    		if (pthread_create(&(philo[i].tid), NULL, &philo_simulation, &philo[i]))
         	return (-1);
+        usleep(100);
         i++;
     }
     i = 1;
