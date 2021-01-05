@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 16:59:02 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 13:43:07 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	*philo_simulation(void *arguments)
 
     if (pthread_create(&(health_monitor), NULL, &health_check, philo))
         return NULL;
-    while (philo->args->state != dead || (philo->args->nb_of_must_eat &&
-            philo->eat_cycles < philo->args->nb_of_must_eat))
+    while (philo->args->state == alive && philo->mutex->state == succes &&
+            philo->eat_cycles != philo->args->nb_of_must_eat)
     {
         eating(philo);
         print_status(philo, "\tis sleeping\n", philo->id, timestamp(philo));
@@ -60,17 +60,18 @@ int    simulation_loop(t_philo *philo, t_args args, t_mutex mutex)
         philo[i].start_time = get_time();
         philo[i].eating_time = get_time();
    		if (pthread_create(&(philo[i].tid), NULL, &philo_simulation, &philo[i]))
-        	return (-1);
+        {
+            philo->mutex->state = failure;
+            break ;
+        }
         i++;
     }
-    i = 1;
-    while (i < (args.nb_of_philo + 1))
+    while (i > 0)
     {
         pthread_join(philo[i].tid, NULL);
-        i++;
+        i--;
     }
     pthread_mutex_destroy(&mutex.write_lock);
-    i = 0;
     while (i < args.nb_of_philo)
     {
         pthread_mutex_destroy(&mutex.forks[i]);
@@ -83,16 +84,22 @@ int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
 {
 	int i;
 
+    i = 0;
+    mutex->state = succes;
 	if (pthread_mutex_init(&mutex->write_lock, NULL))
         return (-1);
-    mutex->forks = malloc(sizeof(pthread_mutex_t) * args->nb_of_philo);
-    if (!mutex->forks)
-        return (-1);
-    i = 0;
     while (i < args->nb_of_philo)
     {
         if (pthread_mutex_init(&mutex->forks[i], NULL))
+        {
+            i--;
+            while (i >= 0)
+            {
+                pthread_mutex_destroy(&mutex->forks[i]);
+                i--;
+            }
             return (-1);
+        }
         i++;
     }
     i = 1;
@@ -115,17 +122,21 @@ int		main(int argc, char **argv)
 
     print(STD_OUT, "time\tphilo\tstatus\n");
 	if (validate_args(&args, argc, argv))
-        return (error_sequence("parsing error\n"));
-    print_args(args); // REMOVE
+        return (error_sequence("parsing error\n", 0, 0));
     philosophers = malloc(sizeof(t_philo) * (args.nb_of_philo + 1));
     if (!philosophers)
-       return (error_sequence("malloc failure\n"));
+       return (error_sequence("malloc fail\n", 0, 0));
+    mutex.forks = malloc(sizeof(pthread_mutex_t) * args.nb_of_philo);
+    if (!mutex.forks)
+        return (error_sequence("malloc fail\n", philosophers, 0));
     if (initialize_philo(philosophers, &args, &mutex) ||
         simulation_loop(philosophers, args, mutex))
-    {
-        free(philosophers);
-        return (error_sequence("simulation failure\n"));
-    }
+        return (error_sequence("simulation fail\n", philosophers, mutex.forks));
     free(philosophers);
+    free(mutex.forks);
     return (0);
 }
+
+
+
+ //   print_args(args); //-------------- REMOVE -------------------

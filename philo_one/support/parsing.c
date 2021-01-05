@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/15 09:20:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 12:59:27 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 13:35:27 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int		parse_args(t_args *args, int argc, char **argv)
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]) * 1000;
 	args->time_to_sleep = ft_atoi(argv[4]) * 1000;
-	args->nb_of_must_eat = (argc == 6) ? ft_atoi(argv[5]) : 0;
+	args->nb_of_must_eat = (argc == 6) ? ft_atoi(argv[5]) : -1;
 	return (0);
 }
