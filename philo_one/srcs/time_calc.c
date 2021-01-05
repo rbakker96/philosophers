@@ -6,11 +6,21 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/21 14:56:12 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 15:21:52 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 19:33:47 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/time_calc.h"
+#include <unistd.h>
+
+void		sleeping(int total_time)
+{
+	long long time;
+
+	time = get_time();
+	while ((get_time() - time) < total_time)
+		usleep(100);
+}
 
 long long	get_time()
 {

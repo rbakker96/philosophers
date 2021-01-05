@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:56:00 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 14:57:04 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 19:28:05 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TIME_CALC_H
 #include "structs.h"
 
+void		sleeping(int total_time);
 long long	get_time();
 long long	timestamp(t_philo *philo);
 
