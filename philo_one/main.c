@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 15:41:23 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 20:11:58 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <stdio.h>
+
 int    simulation_loop(t_philo *philo, t_args args, t_mutex *mutex)
 {
     int i;
@@ -30,7 +32,8 @@ int    simulation_loop(t_philo *philo, t_args args, t_mutex *mutex)
         philo[i].eating_time = get_time();
    		if (pthread_create(&(philo[i].tid), NULL, &philo_simulation, &philo[i]))
         {
-            philo->mutex->state = failure;
+            mutex->state = failure;
+            i--;
             break ;
         }
         i++;
@@ -41,7 +44,8 @@ int    simulation_loop(t_philo *philo, t_args args, t_mutex *mutex)
         i--;
     }
     destroy_mutex(mutex, args.nb_of_philo);
-    return (0);
+    i = (mutex->state == failure) ? -1 : 0;
+    return (i);
 }
 
 int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
