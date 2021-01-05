@@ -6,40 +6,13 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 15:26:07 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 13:55:14 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 15:21:48 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../support.h"
-
-int		ft_strlen(const char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-int		print(int fd, char *str)
-{
-	return (write(fd, str, ft_strlen(str)));
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void		print_nb(int fd, long n)
-{
-	if (n >= 10)
-		print_nb(fd, (n / 10));
-	ft_putchar_fd(('0' + (n % 10)), fd);
-
-}
+#include "../headers/print_functions.h"
+#include "../headers/utils.h"
 
 void		print_status(t_philo *philo, char *status, int id, long timestamp)
 {

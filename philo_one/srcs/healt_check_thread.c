@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   healt_check.c                                      :+:    :+:            */
+/*   healt_check_thread.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/23 10:52:59 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 13:49:05 by roybakker     ########   odam.nl         */
+/*   Created: 2021/01/05 14:24:16 by roybakker     #+#    #+#                 */
+/*   Updated: 2021/01/05 15:25:57 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../support.h"
-#include "../structs.h"
+#include "../headers/healt_check_thread.h"
+#include "../headers/structs.h"
+#include "../headers/time_calc.h"
+#include "../headers/print_functions.h"
 #include <unistd.h>
 
 void	*health_check(void *arguments)

@@ -6,12 +6,16 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 13:36:36 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 15:08:14 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# define STD_OUT 1
+# define ERROR_OUT 2
+
 # include <pthread.h>
 # include <sys/time.h>
 
@@ -44,6 +48,14 @@ typedef struct			s_philo
 	int					id;
 }						t_philo;
 
-void					*philo_simulation(void *arguments);
+typedef enum			e_thread_status
+{
+	alive = 0,
+	dead = 1,
+	succes = 0,
+	failure = 1,
+	left = 0,
+	right = 1
+}						t_thread_status;
 
 #endif

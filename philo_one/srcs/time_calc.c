@@ -6,11 +6,11 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/21 14:56:12 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 14:33:50 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/05 15:21:52 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../support.h"
+#include "../headers/time_calc.h"
 
 long long	get_time()
 {

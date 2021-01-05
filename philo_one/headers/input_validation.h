@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   stages.h                                           :+:    :+:            */
+/*   input_validation.h                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/22 16:36:27 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/03 14:31:11 by roybakker     ########   odam.nl         */
+/*   Created: 2021/01/05 15:02:31 by roybakker     #+#    #+#                 */
+/*   Updated: 2021/01/05 15:03:45 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STAGES_H
-# define STAGES_H
-# include "structs.h"
+#ifndef INPUT_VALIDATION_H
+# define INPUT_VALIDATION_H
+#include "structs.h"
 
-void	eating(t_philo *philo);
-void	*health_check(void *arguments);
+int		validate_args(t_args *args, int argc, char **argv);
 
 #endif

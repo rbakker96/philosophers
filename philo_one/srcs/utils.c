@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parsing.c                                          :+:    :+:            */
+/*   utils.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/15 09:20:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 13:35:27 by roybakker     ########   odam.nl         */
+/*   Created: 2021/01/05 14:33:11 by roybakker     #+#    #+#                 */
+/*   Updated: 2021/01/05 15:28:03 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../support.h"
+#include "../headers/utils.h"
+#include <unistd.h>
+
+int		ft_strlen(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+void	ft_putchar_fd(const char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void		print_nb(const int fd, long n)
+{
+	if (n >= 10)
+		print_nb(fd, (n / 10));
+	ft_putchar_fd(('0' + (n % 10)), fd);
+
+}
 
 int				ft_atoi(const char *str)
 {
@@ -38,13 +62,10 @@ int				ft_atoi(const char *str)
 	return (result * pos_neg);
 }
 
-int		parse_args(t_args *args, int argc, char **argv)
+int		ft_isdigit(char c)
 {
-	args->state = alive;
-	args->nb_of_philo = ft_atoi(argv[1]);
-	args->time_to_die = ft_atoi(argv[2]);
-	args->time_to_eat = ft_atoi(argv[3]) * 1000;
-	args->time_to_sleep = ft_atoi(argv[4]) * 1000;
-	args->nb_of_must_eat = (argc == 6) ? ft_atoi(argv[5]) : -1;
-	return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

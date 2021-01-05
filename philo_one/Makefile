@@ -6,26 +6,26 @@
 #    By: roybakker <roybakker@student.codam.nl>       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/14 15:10:01 by roybakker     #+#    #+#                  #
-#    Updated: 2021/01/03 14:32:23 by roybakker     ########   odam.nl          #
+#    Updated: 2021/01/05 15:36:42 by roybakker     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philo_one
 
 SOURCES			= 	main.c \
-					support/error.c \
-					support/input_validation.c \
-					support/parsing.c \
-					support/print_functions.c \
-					support/time_calc.c \
-					stages/eating.c \
-					stages/healt_check.c
+					srcs/error.c \
+					srcs/healt_check_thread.c \
+					srcs/input_validation.c \
+					srcs/philo_thread.c \
+					srcs/print_functions.c \
+					srcs/time_calc.c \
+					srcs/utils.c
 
 OBJECTS 		=	${SOURCES:%.c=%.o}
 
 FLAGS 			=	-Wall -Wextra -Werror
+INCLUDES 		=	-I headers/
 COMPILE			=	gcc
-LIB				=	ar rc
 
 GREEN 			= 	\033[38;5;46m
 WHITE 			= 	\033[38;5;15m
@@ -39,13 +39,13 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	@echo "$(GREEN)----------------------------------------------------"
-	@$(COMPILE) $(FLAGS) $(INLCUDES) -lpthread -o $(NAME) $(OBJECTS)
+	@$(COMPILE) $(INCLUDES) $(FLAGS) -lpthread -o $(NAME) $(OBJECTS)
 	@echo "Executable				./philo_one"
 	@echo "$(GREEN)----------------------------------------------------"
 
 %.o: %.c
 	@echo "$(GREY)Compiling...				$(WHITE)$<"
-	@$(COMPILE) $(FLAGS) -c -o $@ $<
+	@$(COMPILE) $(INCLUDES) $(FLAGS) -c -o $@ $<
 
 clean:
 	@echo "$(RED)----------------------------------------------------"
