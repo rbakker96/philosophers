@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 15:08:14 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 15:03:35 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct			s_mutex
 {
 	int					state;
 	pthread_mutex_t		write_lock;
+	pthread_mutex_t		health_lock;
 	pthread_mutex_t		*forks;
 }						t_mutex;
 
@@ -41,7 +42,6 @@ typedef struct			s_philo
 	t_mutex				*mutex;
 	t_args				*args;
 	pthread_t			tid;
-	pthread_mutex_t		eat_lock;
 	long long			start_time;
 	long long			eating_time;
 	int					eat_cycles;

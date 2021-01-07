@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 11:38:02 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 20:11:58 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 15:08:25 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include "headers/error.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-#include <stdio.h>
 
 int    simulation_loop(t_philo *philo, t_args args, t_mutex *mutex)
 {
@@ -52,16 +50,21 @@ int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
 {
 	int i;
 
-    i = 0;
-    mutex->state = succes;
-	if (pthread_mutex_init(&mutex->write_lock, NULL))
-        return (-1);
-    while (i < args->nb_of_philo)
-    {
-        if (pthread_mutex_init(&mutex->forks[i], NULL))
-            return (destroy_mutex(mutex, i));
-        i++;
-    }
+    // i = 0;
+    // mutex->state = succes;
+	// if (pthread_mutex_init(&mutex->write_lock, NULL))
+    //     return (-1);
+    // if (pthread_mutex_init(&mutex->health_lock, NULL))
+    // {
+    //     pthread_mutex_destroy(&mutex->write_lock);
+    //     return (-1);
+    // }
+    // while (i < args->nb_of_philo)
+    // {
+    //     if (pthread_mutex_init(&mutex->forks[i], NULL))
+    //         return (destroy_mutex(mutex, i));
+    //     i++;
+    // }
     i = 1;
 	while (i < (args->nb_of_philo + 1))
 	{
@@ -72,6 +75,28 @@ int		initialize_philo(t_philo *philo, t_args *args, t_mutex *mutex)
 		i++;
 	}
 	return (0);
+}
+
+int     initialize_mutex(t_mutex *mutex, int nb_of_philo)
+{
+	int i;
+
+    i = 0;
+    mutex->state = succes;
+	if (pthread_mutex_init(&mutex->write_lock, NULL))
+        return (-1);
+    if (pthread_mutex_init(&mutex->health_lock, NULL))
+    {
+        pthread_mutex_destroy(&mutex->write_lock);
+        return (-1);
+    }
+    while (i < nb_of_philo)
+    {
+        if (pthread_mutex_init(&mutex->forks[i], NULL))
+            return (destroy_mutex(mutex, i));
+        i++;
+    }
+    return (0);
 }
 
 int		main(int argc, char **argv)
@@ -89,7 +114,8 @@ int		main(int argc, char **argv)
     mutex.forks = malloc(sizeof(pthread_mutex_t) * args.nb_of_philo);
     if (!mutex.forks)
         return (error_sequence("malloc fail\n", philosophers, 0));
-    if (initialize_philo(philosophers, &args, &mutex) ||
+    if (initialize_mutex(&mutex, args.nb_of_philo) ||
+        initialize_philo(philosophers, &args, &mutex) ||
         simulation_loop(philosophers, args, &mutex))
         return (error_sequence("simulation fail\n", philosophers, mutex.forks));
     free(philosophers);

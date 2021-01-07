@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:24:30 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 19:45:07 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 15:09:33 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	eating(t_philo *philo)
 		right_fork_first(philo, fork[left], fork[right]);
 	else
 		left_fork_first(philo, fork[left], fork[right]);
-
-	pthread_mutex_lock(&philo->eat_lock);
+	pthread_mutex_lock(&philo->mutex->health_lock);
 	philo->eating_time = get_time();
 	print_status(philo, "\tis eating\n", philo->id, timestamp(philo));
-	pthread_mutex_unlock(&philo->eat_lock);
-
+	pthread_mutex_unlock(&philo->mutex->health_lock);
 	sleeping(philo->args->time_to_eat);
 	pthread_mutex_unlock(&philo->mutex->forks[fork[left]]);
 	pthread_mutex_unlock(&philo->mutex->forks[fork[right]]);

@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/21 15:32:03 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 20:11:35 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 15:03:50 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		destroy_mutex(t_mutex *mutex, int i)
     	i--;
 	}
 	pthread_mutex_destroy(&mutex->write_lock);
+	pthread_mutex_destroy(&mutex->health_lock);
 	return (-1);
 }
 
