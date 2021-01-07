@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/06 17:22:44 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 14:47:19 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_semaphore
 {
 	int					state;
 	sem_t				*write_lock;
+	sem_t				*health_lock;
 	sem_t				*forks;
 }						t_semaphore;
 
@@ -44,7 +45,6 @@ typedef struct			s_philo
 	t_semaphore			*semaphore;
 	t_args				*args;
 	pthread_t			tid;
-	sem_t				*health_lock;
 	long long			start_time;
 	long long			eating_time;
 	int					eat_cycles;

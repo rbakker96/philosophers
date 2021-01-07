@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:24:30 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/06 17:33:18 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 14:43:09 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	get_forks(t_philo *philo)
 void	eating(t_philo *philo)
 {
 	get_forks(philo);
-	sem_wait(philo->health_lock);
+	sem_wait(philo->semaphore->health_lock);
 	philo->eating_time = get_time();
 	print_status(philo, "\tis eating\n", philo->id, timestamp(philo));
-	sem_post(philo->health_lock);
+	sem_post(philo->semaphore->health_lock);
 	sleeping(philo->args->time_to_eat);
 	sem_post(philo->semaphore->forks);
 	sem_post(philo->semaphore->forks);
