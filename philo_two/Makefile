@@ -6,7 +6,7 @@
 #    By: roybakker <roybakker@student.codam.nl>       +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/14 15:10:01 by roybakker     #+#    #+#                  #
-#    Updated: 2021/01/06 10:44:13 by roybakker     ########   odam.nl          #
+#    Updated: 2021/01/07 10:33:10 by roybakker     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SOURCES			= 	main.c \
 
 OBJECTS 		=	${SOURCES:%.c=%.o}
 
-FLAGS 			=	-Wall -Wextra -Werror
+FLAGS 			=	-Wall -Wextra -Werror -g -fsanitize=address
 INCLUDES 		=	-I headers/
 COMPILE			=	gcc
 
@@ -32,6 +32,10 @@ WHITE 			= 	\033[38;5;15m
 GREY 			= 	\033[38;5;8m
 ORANGE 			= 	\033[38;5;202m
 RED 			= 	\033[38;5;160m
+
+ifeq ($(DEBUG),1)
+    FLAGS += -g -fsanitize=address
+endif
 
 UNAME_S			:=	$(shell uname -s)
 

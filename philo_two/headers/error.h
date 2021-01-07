@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:57:23 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/06 11:17:54 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 14:39:39 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ERROR_H
 #include "structs.h"
 
-int		destroy_mutex(t_mutex *mutex, int i); //semaphore
-int		error_sequence(char *msg, t_philo *philo, pthread_mutex_t *mutex);
+int		error_sequence(char *msg, t_philo *philo);
 
 #endif

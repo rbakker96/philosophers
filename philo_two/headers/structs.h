@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/06 11:39:41 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/06 17:22:44 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct			s_mutex			//semaphore
+#include <stdio.h> //remove
+
+typedef struct			s_semaphore
 {
-	int					state;			//semaphore
-	pthread_mutex_t		write_lock;		//semaphore
-	pthread_mutex_t		*forks;			//semaphore
-}						t_mutex;		//semaphore
+	int					state;
+	sem_t				*write_lock;
+	sem_t				*forks;
+}						t_semaphore;
 
 typedef struct			s_args
 {
@@ -39,10 +41,10 @@ typedef struct			s_args
 
 typedef struct			s_philo
 {
-	t_mutex				*mutex;			//semaphore
+	t_semaphore			*semaphore;
 	t_args				*args;
 	pthread_t			tid;
-	pthread_mutex_t		eat_lock;		//semaphore of one
+	sem_t				*health_lock;
 	long long			start_time;
 	long long			eating_time;
 	int					eat_cycles;
