@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 20:07:32 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/07 14:47:19 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/07 14:58:09 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <semaphore.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-#include <stdio.h> //remove
 
 typedef struct			s_semaphore
 {
