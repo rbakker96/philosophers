@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:24:30 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/07 14:43:09 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/09 14:31:28 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,21 @@ void	eating(t_philo *philo)
 
 void	*philo_simulation(void *arguments)
 {
-	t_philo *philo = (t_philo *)arguments;
-    pthread_t health_monitor;
+	t_philo		*philo;
+	pthread_t	health_monitor;
 
-    if (pthread_create(&(health_monitor), NULL, &health_check, philo))
-        return NULL;
-    while (philo->args->state == alive && philo->semaphore->state == succes &&
-            philo->eat_cycles != philo->args->nb_of_must_eat)
-    {
-        eating(philo);
-        print_status(philo, "\tis sleeping\n", philo->id, timestamp(philo));
+	philo = (t_philo *)arguments;
+	if (pthread_create(&(health_monitor), NULL, &health_check, philo))
+		return (NULL);
+	while (philo->args->state == alive && philo->semaphore->state == succes &&
+			philo->eat_cycles != philo->args->nb_of_must_eat)
+	{
+		eating(philo);
+		print_status(philo, "\tis sleeping\n", philo->id, timestamp(philo));
 		sleeping(philo->args->time_to_sleep);
-        print_status(philo, "\tis thinking\n", philo->id, timestamp(philo));
-        philo->eat_cycles++;
-    }
-    return NULL;
+		print_status(philo, "\tis thinking\n", philo->id, timestamp(philo));
+		philo->eat_cycles++;
+	}
+	pthread_join(health_monitor, NULL);
+	return (NULL);
 }
