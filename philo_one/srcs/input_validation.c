@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/14 15:05:21 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 19:45:14 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/09 14:16:55 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ int		validate_args(t_args *args, int argc, char **argv)
 		}
 		i++;
 	}
-	return(parse_args(args, argc, argv));
+	return (parse_args(args, argc, argv));
 }

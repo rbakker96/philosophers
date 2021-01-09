@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:33:11 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/05 15:28:03 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/09 14:19:28 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,14 @@ void	ft_putchar_fd(const char c, int fd)
 	write(fd, &c, 1);
 }
 
-void		print_nb(const int fd, long n)
+void	print_nb(const int fd, long n)
 {
 	if (n >= 10)
 		print_nb(fd, (n / 10));
 	ft_putchar_fd(('0' + (n % 10)), fd);
-
 }
 
-int				ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
 	int			i;
 	int			pos_neg;
