@@ -6,7 +6,7 @@
 /*   By: roybakker <roybakker@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/01/05 14:24:16 by roybakker     #+#    #+#                 */
-/*   Updated: 2021/01/07 14:42:41 by roybakker     ########   odam.nl         */
+/*   Updated: 2021/01/09 14:56:17 by roybakker     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 void	*health_check(void *arguments)
 {
-	t_philo *philo = (t_philo *)arguments;
+	t_philo *philo;
 
-    while (philo->args->state == alive && philo->semaphore->state == succes &&
-            philo->eat_cycles != philo->args->nb_of_must_eat)
+	philo = (t_philo *)arguments;
+	while (philo->args->state == alive && philo->semaphore->state == succes &&
+			philo->eat_cycles != philo->args->nb_of_must_eat)
 	{
 		sem_wait(philo->semaphore->health_lock);
 		if ((get_time() - philo->eating_time) > philo->args->time_to_die)
@@ -29,8 +30,8 @@ void	*health_check(void *arguments)
 			print_status(philo, "\tis dead\n", philo->id, timestamp(philo));
 			philo->args->state = dead;
 		}
- 		sem_post(philo->semaphore->health_lock);
+		sem_post(philo->semaphore->health_lock);
 		usleep(5000);
 	}
-	return NULL;
+	return (NULL);
 }
