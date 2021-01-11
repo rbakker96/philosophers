@@ -53,6 +53,7 @@ In this project, you will learn the basics of threading a process and how to wor
 
 ### philo_one
 > <a href="https://github.com/rbakker96/philosophers/tree/master/philo_one" target="_blank">Folder</a><br>
+
 > In this version the non common rules will be:
 
 - One fork between each philosopher, therefore there will be a fork at the right and at the left of each philosopher.
@@ -62,6 +63,7 @@ In this project, you will learn the basics of threading a process and how to wor
 
 ### philo_two
 > <a href="https://github.com/rbakker96/philosophers/tree/master/philo_two" target="_blank">Folder</a><br>
+
 > In this version the non common rules will be:
 
 - All the forks are in the middle of the table.
@@ -71,11 +73,26 @@ In this project, you will learn the basics of threading a process and how to wor
 
 ### philo_three
 > <a href="https://github.com/rbakker96/philosophers/tree/master/philo_three" target="_blank">Folder</a><br>
+
 > In this version the non common rules will be:
 
 - All the forks are in the middle of the table.
 - They have no states in memory but the number of available forks is represented by a semaphore.
 - Each philosopher should be a process and the main process should not be a philosopher.
+
+---
+
+### Usage
+> Run the following commands in the terminal
+
+```shell
+$ https://github.com/rbakker96/philosophers.git philosophers
+$ cd philosophers
+-> To test for example philo_one
+$ cd philo_one
+$ make
+$ ./philo_one 5 800 200 200 5
+```
 
 ---
 
